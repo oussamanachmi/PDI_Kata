@@ -1,0 +1,234 @@
+nav {
+    padding: 15px;
+    background: linear-gradient(0deg, rgba(73, 72, 72, 1) 0%, rgba(0, 0, 0, 1) 100%);
+
+    .search {
+        position: absolute;
+        left: 65pt;
+
+        .icon-search {
+            position: absolute;
+            right: 0;
+            padding: 3px;
+        }
+
+
+
+        .search-input {
+            width: 28rem;
+            height: 20px;
+            outline: none;
+            border: none;
+            border-radius: 0;
+            margin-left: 1.5rem;
+
+            &::placeholder {
+                color: black;
+                font-size: 12pt;
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .lang {
+        position: absolute;
+        right: 1rem;
+
+        img {
+            cursor: pointer;
+
+            // &:active {
+            //     opacity: .5;
+            // }
+        }
+
+        .focused {
+            opacity: .5;
+        }
+
+        #fr {
+            margin-right: .5rem;
+        }
+
+    }
+}
+
+.movies-list {
+    .card {
+        box-shadow: 0px 0px 11px 0px #e8e5e5;
+        border: none;
+
+        .card-body {
+            padding: 10px;
+
+            .card-title {
+                font-size: 18pt;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .card-subtitle {
+                font-size: 12pt;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 100;
+                font-style: italic;
+            }
+
+            .edit-icon {
+                position: absolute;
+                right: 5pt;
+                top: 0;
+                cursor: pointer;
+            }
+
+            .movie-info {
+
+                .col-md-2 {
+                    text-align: center;
+                    display: grid;
+                    // flex: 1 1 auto;
+
+                    span {
+                        font-family: 'Roboto', sans-serif;
+                        font-weight: 300;
+                        font-size: 11pt;
+                    }
+                }
+
+                .col-md-3 {
+                    span {
+                        white-space: nowrap;
+                    }
+                }
+            }
+
+            button {
+                font-size: 10pt;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 100;
+                white-space: nowrap;
+                padding: 0 5pt;
+            }
+
+            #id-button {
+                padding: 0 15pt;
+            }
+
+            .poster {
+                text-align: center;
+                background-color: #f3f3f3;
+                margin: -11px 0px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+.modal-header {
+    border-bottom: none !important;
+    padding-bottom: 0;
+
+    .modal-title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16pt;
+        font-weight: 400;
+    }
+
+    .btn-close {
+        opacity: 1 !important;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+.modal-body {
+    .isAdult {
+        span {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14pt;
+            font-weight: 500;
+            margin-left: 10pt;
+        }
+
+        .form-check {
+            .form-check-input {
+                border-radius: 0;
+            }
+
+            .form-check-label {
+                font-family: 'Roboto', sans-serif;
+                font-size: 14pt;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .movie-input {
+        input {
+            border-radius: 0;
+            margin-left: -5px;
+        }
+
+        select {
+            border-radius: 0;
+            margin-left: -5px;
+        }
+
+        .col-form-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14pt;
+            font-weight: 500;
+        }
+    }
+}
+
+.modal-footer {
+    button {
+        width: 25%;
+        line-height: 1;
+        border-radius: 0;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14pt;
+        font-weight: 500;
+        color: white;
+        border: none;
+    }
+
+    .btn-ok {
+        background: linear-gradient(0deg, rgba(73, 72, 72, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    }
+
+    .btn-cancel {
+        background: #9b9b9b;
+    }
+}
+
+::ng-deep .pagination {
+    pagination-template {
+        width: 100%;
+        text-align: center;
+
+        .ngx-pagination {
+            background: #f3f3f3;
+            padding-top: 10pt;
+
+            .current {
+                background: transparent;
+                color: black;
+                font-weight: bold;
+            }
+
+            a {
+                opacity: .5;
+            }
+        }
+    }
+}

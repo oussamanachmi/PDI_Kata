@@ -1,0 +1,14 @@
+{
+    "OriginalTitle": "Titre original",
+    "ID": "ID",
+    "Minutes": "Minutes",
+    "StartYear": "Année de début",
+    "EndYear": "Fin d'année",
+    "IsAdult": "Est adulte",
+    "Genres": "Genre",
+    "Editing": "Édition",
+    "Yes": "Oui",
+    "No": "Non",
+    "OK": "OK",
+    "Cancel": "Annuler"
+}

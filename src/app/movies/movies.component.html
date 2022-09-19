@@ -1,0 +1,141 @@
+<nav class="navbar navbar-light bg-light">
+    <img src="../../assets/icons/logo.svg" alt="logo">
+    <form class="search d-none d-sm-block">
+        <img class="icon-search" src="../../assets/icons/icon_magnify.svg" />
+        <input class="search-input form-control" type="text" placeholder="Search a movie..." [(ngModel)]="searchText"
+            [ngModelOptions]="{standalone: true}">
+    </form>
+    <div class="lang">
+        <img id="fr" src="../../assets/icons/flag_fr.svg" (click)="switchLang('fr')" alt="fr">
+        <img id="usa" src="../../assets/icons/flag_usa.svg" (click)="switchLang('en')" alt="usa">
+    </div>
+</nav>
+
+<div class="movies-list mt-3">
+    <div class="container-fluid px-4">
+        <div class="row gx-5">
+            <div class="col-md-4 mb-3"
+                *ngFor="let item of dataset | slice:0:5000 | filter: searchText | paginate: { itemsPerPage: 9, currentPage: p }">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9 col-9 position-relative">
+                                <h3 class="card-title">{{item.primaryTitle}}</h3>
+                                <h4 class="card-subtitle mb-2 text-muted">
+                                    {{'OriginalTitle' | translate}}:
+                                    {{item.originalTitle}}
+                                </h4>
+                                <img class="edit-icon" src="../../assets/icons/icon_pencil.svg"
+                                    (click)="open(content, item)" alt="edit">
+                                <div class="row movie-info">
+                                    <div class="col-md-2 col-2">
+                                        <button id="id-button" type="button" class="btn btn-light">
+                                            {{'ID' | translate}}
+                                        </button>
+                                        <span>{{item.tconst}}</span>
+                                    </div>
+                                    <div class="col-md-2 col-2 mx-2 px-2">
+                                        <button type="button" class="btn btn-light">{{'Minutes' | translate}}</button>
+                                        <span>-</span>
+                                    </div>
+                                    <div class="col-md-2 col-2 mx-2 px-2">
+                                        <button type="button" class="btn btn-light">{{'StartYear' | translate}}</button>
+                                        <span>{{item.startYear}}</span>
+                                    </div>
+                                    <div class="col-md-2 col-2 mx-2 px-2">
+                                        <button type="button" class="btn btn-light">{{'EndYear'| translate}}</button>
+                                        <span>-</span>
+                                    </div>
+                                    <div class="col-md-2 col-2 mx-2 px-2">
+                                        <button type="button" class="btn btn-light">{{'IsAdult' | translate}}</button>
+                                        <span>{{item.isAdult === '0' ? 'No': 'Yes'}}</span>
+                                    </div>
+                                    <div class="col-md-3 col-2 px-2">
+                                        <button type="button" class="btn btn-light">Genres</button>
+                                        <span>{{item.genres}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-3 poster">
+                                <img src="../../assets/icons/icon_poster.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<pagination-controls class="pagination" (pageChange)="p = $event" [responsive]="true" previousLabel="" nextLabel="">
+</pagination-controls>
+
+<ng-template #content let-modal class="edit-modal">
+    <div class="modal-header">
+        <h4 class="modal-title w-100 text-center" id="modal-basic-title">{{'Editing' | translate}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <div class="d-flex isAdult">
+                    <div class="col-sm-3">
+                        <span>{{'IsAdult' | translate}}</span>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [checked]="movieInfo.isAdult === '1'">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{'Yes' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [checked]="movieInfo.isAdult === '0'">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{'No' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row text-center movie-input">
+                <label for="inputPassword" class="col-sm-3 col-form-label">{{'Minutes' | translate}}</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="{{movieInfo.runtimeMinutes}}">
+                </div>
+            </div>
+            <div class="mb-3 row text-center movie-input">
+                <label for="inputPassword" class="col-sm-3 col-form-label">{{'StartYear' | translate}}</label>
+                <div class="col-sm-9">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>{{movieInfo.startYear}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row text-center movie-input">
+                <label for="inputPassword" class="col-sm-3 col-form-label">{{'EndYear' | translate}}</label>
+                <div class="col-sm-9">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>{{movieInfo.endYear}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row text-center movie-input">
+                <label for="inputPassword" class="col-sm-3 col-form-label">{{'Genres' | translate}}</label>
+                <div class="col-sm-9">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>{{movieInfo.genres}}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer text-center d-block">
+        <button type="button" class="btn btn-outline-dark btn-ok" (click)="modal.close('Save click')">{{'OK' |
+            translate}}</button>
+        <button type="button" class="btn btn-outline-dark btn-cancel" (click)="modal.close('Save click')">{{'Cancel' |
+            translate}}</button>
+    </div>
+</ng-template>
